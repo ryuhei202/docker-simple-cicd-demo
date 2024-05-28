@@ -6,15 +6,17 @@ services:
       - 8080:8080 # docker container run -p "8080":"8080"
     tty: true # docker container run -i "-t" ubuntu bash
     volumes:
-      - ./api:workspace:cached # docker container run -v "./api:workspace"
+      - ./api:/workspace:cached # docker container run -v "./api:workspace"
   
   web:
     container_name: web
     build: ./web
     ports:
       - 3000:3000
+    entrypoint:
+      - REACT_APP_API_SERVER=http://localhost:8080/api
     tty: true
     volumes:
-      - ./web:workspace:cached
+      - ./web:/workspace:cached
     depends_on:
       - api
