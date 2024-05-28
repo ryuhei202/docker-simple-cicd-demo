@@ -1,0 +1,20 @@
+services:
+  api:
+    container_name: api  # docker container run --name "api" ${image_name}
+    build: ./api # docker image build "./api"
+    ports:
+      - 8080:8080 # docker container run -p "8080":"8080"
+    tty: true # docker container run -i "-t" ubuntu bash
+    volumes:
+      - ./api:workspace:cached # docker container run -v "./api:workspace"
+  
+  web:
+    container_name: web
+    build: ./web
+    ports:
+      - 3000:3000
+    tty: true
+    volumes:
+      - ./web:workspace:cached
+    depends_on:
+      - api
