@@ -5,7 +5,7 @@ on:
     branches: ["main"]
 
 env:
-  AWS_REGION: us-northeast-1
+  AWS_REGION: ap-northeast-1
   ECS_SERVICE: cicd-service
   ECS_CLUSTER: cicd-cluster
   ECS_TASK_DEFINITION: .aws/task-definition.json
