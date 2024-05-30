@@ -1,6 +1,6 @@
 services:
   api:
-    container_name: api  # docker container run --name "api" ${image_name}
+    container_name: api  # docker container run --name "api" ${image}
     build: ./api # docker image build "./api"
     ports:
       - 8080:8080 # docker container run -p "8080":"8080"
@@ -10,7 +10,9 @@ services:
   
   web:
     container_name: web
-    build: ./web
+    build:
+      context: ./web
+      target: base
     ports:
       - 3000:3000
     environment:
